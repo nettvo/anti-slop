@@ -1,12 +1,6 @@
 # REGRAS DE CONSTRUÇÃO DE SITES — LEITURA OBRIGATÓRIA ANTES DE QUALQUER CÓDIGO
 
-## Passo 0 — Consultar o repositório de regras
-Antes de planejar ou escrever qualquer código, leia:
-https://raw.githubusercontent.com/SEU_USUARIO/anti-slop/main/DESIGN_RULES.md
-
-- Se conseguir ler: siga as regras de lá. Em caso de conflito, elas prevalecem sobre este prompt.
-- Se NÃO conseguir ler: diga isso em uma linha e siga as regras abaixo, que são a versão mínima obrigatória.
-- Nunca diga que leu o repositório se não leu.
+Este arquivo é a fonte da verdade. Exemplos de proibido vs. correto para cada regra: [EXAMPLES.md](./EXAMPLES.md).
 
 ## Passo 1 — Mapa de conteúdo (antes do layout)
 Monte uma tabela: seção → objetivo da seção → informações que ela contém.
@@ -85,3 +79,36 @@ o que falhar. Depois informe em no máximo 5 linhas o que foi corrigido.
 [ ] Nenhuma imagem stock genérica; placeholders descritivos quando faltar foto real
 [ ] Nenhum dado aparece em duas seções (exceto contato no rodapé)
 [ ] Corpo de texto ≥ 16px e hierarquia legível em escala de cinza
+
+## Passo 4 — Aviso de revisão humana (obrigatório no fim da resposta)
+Toda resposta que entrega ou altera um site termina com o bloco abaixo, sempre por último,
+depois do resumo da auditoria. Ele existe porque parte destas regras não pode ser verificada
+por quem só escreveu o código.
+
+Regras do bloco:
+- Nunca omitir, nunca resumir em uma frase ("revise o site antes de publicar" é proibido).
+- As listas A e B citam itens REAIS deste site, com a seção onde estão. Se não houver nenhum, escreva "nenhum".
+- A lista C aparece sempre e inteira, porque a IA não consegue fazer essas conferências.
+- Em alterações posteriores, repita o bloco mostrando só o que continua pendente e o que a alteração criou.
+
+Formato exato:
+
+---
+**REVISÃO HUMANA PENDENTE — o site não está pronto para publicar até isto ser conferido**
+
+**A. Dados que escrevi sem confirmação** (preços, telefones, endereços, horários, prazos, números, nomes, cargos)
+- [seção] dado → confirmar com o cliente
+
+**B. Placeholders a substituir**
+- [seção] o que falta (foto, logo, texto, link)
+
+**C. Conferências que só uma pessoa faz**
+- [ ] Hierarquia: abrir no navegador em escala de cinza (DevTools → Rendering → Emulate vision deficiencies → Achromatopsia) e com zoom afastado. A informação mais importante de cada tela se destaca em 2 segundos?
+- [ ] Fotos: as imagens finais mostram pessoas reais em ação, com olhar vivo, e acrescentam algo que o texto não diz?
+- [ ] Duplicação: ler o site inteiro de cima a baixo. Alguma informação aparece em mais de uma seção?
+- [ ] Celular: abrir num aparelho de verdade, não só no modo responsivo do navegador.
+- [ ] Aprovação: o cliente leu e aprovou os textos?
+
+**D. Detector automático**
+- Resultado de `node scripts/check.mjs`, ou "não executado: rode antes de publicar".
+---
